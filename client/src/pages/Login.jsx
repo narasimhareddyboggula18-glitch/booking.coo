@@ -20,7 +20,7 @@ const Login = () => {
   const validate = () => {
     const e = {};
     if (!form.email) e.email = 'Email is required';
-    else if (!form.email.endsWith('@presidencyuniversity.in')) e.email = 'Only @presidencyuniversity.in emails allowed';
+    else if (!form.email.includes('@')) e.email = 'Enter a valid email address';
     if (!form.password) e.password = 'Password is required';
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -81,6 +81,7 @@ const Login = () => {
                 <div style={{ position: 'relative' }}>
                   <FiMail style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: '#555' }} />
                   <input
+                    id="login-email"
                     type="email" className={`input-field ${errors.email ? 'error' : ''}`}
                     value={form.email} onChange={e => { setForm(f => ({ ...f, email: e.target.value })); setErrors(er => ({ ...er, email: '' })); }}
                     placeholder="you@presidencyuniversity.in"
@@ -99,6 +100,7 @@ const Login = () => {
                 <div style={{ position: 'relative' }}>
                   <FiLock style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: '#555' }} />
                   <input
+                    id="login-password"
                     type={showPwd ? 'text' : 'password'} className={`input-field ${errors.password ? 'error' : ''}`}
                     value={form.password} onChange={e => { setForm(f => ({ ...f, password: e.target.value })); setErrors(er => ({ ...er, password: '' })); }}
                     placeholder="Your password"
